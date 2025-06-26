@@ -9,7 +9,7 @@ const Chat = ({ display, roomId }) => {
   const inputRef = useRef();
   
   useEffect(() => {
-    socket.on('FE-receive-message', ({ msg, sender }) => {
+    socket.on('frontendReceiveMessage', ({ msg, sender }) => {
       setMsg((msgs) => [...msgs, { sender, msg }]);
     });
   }, []);
@@ -26,7 +26,7 @@ const Chat = ({ display, roomId }) => {
       const msg = e.target.value;
 
       if (msg) {
-        socket.emit('BE-send-message', { roomId, msg, sender: currentUser });
+        socket.emit('backendSendMessage', { roomId, msg, sender: currentUser });
         inputRef.current.value = '';
       }
     }

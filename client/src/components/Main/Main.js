@@ -10,7 +10,7 @@ const Main = (props) => {
 
   useEffect(() => {
 
-    socket.on('FE-error-user-exist', ({ error }) => {
+    socket.on('frontendErrorUserExist', ({ error }) => {
       if (!error) {
         const roomName = roomRef.current.value;
         const userName = userRef.current.value;
@@ -33,7 +33,7 @@ const Main = (props) => {
       setErr(true);
       setErrMsg('Enter Room Name or User Name');
     } else {
-      socket.emit('BE-check-user', { roomId: roomName, userName });
+      socket.emit('backendCheckUser', { roomId: roomName, userName });
     }
   }
 
