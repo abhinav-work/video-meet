@@ -1,6 +1,19 @@
 import io from 'socket.io-client';
-// const sockets = io('http://localhost:3001', { autoConnect: true, forceNew: true });
-// const sockets = io('https://devsocket.novagems.io');
-const sockets = io('http://localhost:7006');
+const sockets = io(process.env.REACT_APP_BACKEND_URL, { 
+    autoConnect: true,
+    transports: ['polling', 'websocket']
+});
+// sockets.connected()
+sockets.on('connect', () => {
+  console.log('Connected:', sockets.connected);
+  console.log('Socket ID:', sockets.id);
+});
 
+sockets.on('disconnect', () => {
+  console.log('Disconnected');
+});
+
+sockets.on('connect_error', (error) => {
+  console.log('Connection Error:', error);
+});
 export default sockets;

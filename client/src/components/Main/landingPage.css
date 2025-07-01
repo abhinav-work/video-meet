@@ -1,0 +1,75 @@
+/* LandingPage.css */
+
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #2563eb, #7c3aed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  color: #1f2937;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+}
+
+.join-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.join-button:hover {
+  background-color: #1e40af;
+}
+
+.error {
+  margin-top: 12px;
+  color: #dc2626;
+  text-align: center;
+  font-size: 14px;
+}

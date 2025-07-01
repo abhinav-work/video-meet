@@ -1,10 +1,9 @@
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const PORT = 7006;
 const path = require('path');
-require('dotenv')
 
 let socketList = {};
 
@@ -49,7 +48,7 @@ io.on('connection', (socket) => {
       .emit('frontendUserLeave', { connectSocketId: socket.id, userName: [socket.id] });
   });
 
-  socket.on('BE-check-user', ({ roomId, userName }) => {
+  socket.on('backendCheckUser', ({ roomId, userName }) => {
     let error = false;
 
     const roomClients = io.sockets.adapter.rooms[roomId] || { length: 0 }
@@ -82,7 +81,7 @@ io.on('connection', (socket) => {
           error = true;
         }
       });
-      socket.emit('FE-error-user-exist', { error });
+      socket.emit('frontendErrorUserExist', { error });
     });
   });
 
@@ -105,7 +104,7 @@ io.on('connection', (socket) => {
         socket.broadcast.to(roomId).emit('frontendUserJoin', users);
         // io.sockets.in(roomId).emit('frontendUserJoin', users);
       } catch (e) {
-        io.sockets.in(roomId).emit('FE-error-user-exist', { err: true });
+        io.sockets.in(roomId).emit('frontendErrorUserExist', { err: true });
       }
     });
   });
@@ -125,8 +124,8 @@ io.on('connection', (socket) => {
     });
   });
 
-  socket.on('BE-send-message', ({ roomId, msg, sender }) => {
-    io.sockets.in(roomId).emit('FE-receive-message', { msg, sender });
+  socket.on('backendSendMessage', ({ roomId, msg, sender }) => {
+    io.sockets.in(roomId).emit('frontendReceiveMessage', { msg, sender });
   });
 
   socket.on('backendLeaveRoom', ({ roomId, leaver }) => {
@@ -149,6 +148,6 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(PORT, () => {
-  console.log(`Connected : ${PORT}`);
+http.listen(process.env.BACKEND_PORT, () => {
+  console.log(`Connected : ${process.env.BACKEND_PORT}`);
 });
