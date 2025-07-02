@@ -10,7 +10,6 @@ import {
   VideoAndBarContainer,
   VideoContainer,
   VideoBox,
-  FaIcon,
   MyVideo,
   VideoText,
   AudioText,
@@ -243,11 +242,11 @@ const Room = (props) => {
     <RoomContainer>
       <VideoAndBarContainer>
         <VideoContainer onClick={closeChatBox}>
-          <VideoBox className={`width-peer${peers.length > 8 ? '' : peers.length}`} id={`localVideo_${socket.id}`}>
+          <VideoBox className={`width-peer${peers.length > 8 ? '' : (peers.length || 1)}`} id={`localVideo_${socket.id}`}>
             {!userVideoAudio['localUser'].video && <UserName>{currentUser}</UserName>}
             {writeUserName(currentUser, userVideoAudio['localUser'].video)}
             {writeUserAudioStatus(userVideoAudio['localUser'].audio)}
-            <MyVideo onClick={expandScreen} ref={userVideoRef} muted autoPlay playInline />
+            <MyVideo onClick={expandScreen} ref={userVideoRef} muted autoPlay playsInline />
           </VideoBox>
           {peers.map((peer, index, arr) => createUserVideo(peer, index, arr))}
         </VideoContainer>

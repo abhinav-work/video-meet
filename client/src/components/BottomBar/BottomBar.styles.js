@@ -107,19 +107,6 @@ export const StopButton = styled(ActionButton)`
   }
 `;
 
-export const Left = styled.div`
-  display: flex;
-  gap: 12px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 4px;
-  }
-`;
-
 export const Center = styled.div`
   display: flex;
   gap: 12px;
@@ -130,17 +117,5 @@ export const Center = styled.div`
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 4px;
-  }
-`;
-
-export const Right = styled.div`
-  display: flex;
-  gap: 12px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
   }
 `;

@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   Bar,
-  Left,
   Center,
-  Right,
   ActionButton,
   StopButton
 } from './BottomBar.styles';
