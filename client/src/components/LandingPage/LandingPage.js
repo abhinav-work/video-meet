@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import socket from "../../socket";
-import "./landingPage.css";
+import "./LandingPage.css";
 
 export default function LandingPage({ history }) {
   const roomRef = useRef();

@@ -19,7 +19,7 @@ const BottomBar = ({
 }) => {
   return (
     <Bar $chatOpen={displayChat}>
-      <Left>
+        <Center>
         <ActionButton onClick={toggleCameraAudio} data-switch='video'>
           <i className={`fas ${userVideoAudio.video ? 'fa-video' : 'fa-video-slash'}`} />
           Camera
@@ -28,9 +28,6 @@ const BottomBar = ({
           <i className={`fas ${userVideoAudio.audio ? 'fa-microphone' : 'fa-microphone-slash'}`} />
           Audio
         </ActionButton>
-      </Left>
-
-      <Center>
         <ActionButton onClick={clickChat}>
           <i className='fas fa-comments' />
           Chat
@@ -39,14 +36,13 @@ const BottomBar = ({
           <i className={`fas fa-desktop ${screenShare ? 'sharing' : ''}`} />
           Share
         </ActionButton>
-      </Center>
 
-      <Right>
         <StopButton onClick={goToBack}>
           <i className='fas fa-phone-slash' />
           Stop
         </StopButton>
-      </Right>
+      </Center>
+
     </Bar>
   );
 };

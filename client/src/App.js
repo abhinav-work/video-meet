@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Main from './components/Main/LandingPage';
+import Main from './components/LandingPage/LandingPage';
 import Room from './components/Room/Room'
 import styled from 'styled-components';
 

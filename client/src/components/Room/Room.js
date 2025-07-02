@@ -148,7 +148,6 @@ const Room = (props) => {
   function createUserVideo(peer, index, arr) {
     return (
       <VideoBox className={`width-peer${peers.length > 8 ? '' : peers.length}`} onClick={expandScreen} key={index} id={`remoteVideo_${peer.peerID}`}>
-        <FaIcon className='fas fa-expand' />
         <VideoCard key={index} peer={peer} number={arr.length} userName={peer.userName} />
         {writeUserName(peer.userName, !!(peer.userName && userVideoAudio[peer.userName]?.video))}
         {writeUserAudioStatus(!!(peer.userName && userVideoAudio[peer.userName]?.audio))}
@@ -167,6 +166,13 @@ const Room = (props) => {
   const clickChat = (e) => {
     e.stopPropagation();
     setDisplayChat(!displayChat);
+  };
+
+   const closeChatBox = (e) => {
+    if (displayChat) {
+      e.stopPropagation();
+      setDisplayChat(false);
+    }
   };
 
   const goToBack = (e) => {
@@ -236,10 +242,9 @@ const Room = (props) => {
   return (
     <RoomContainer>
       <VideoAndBarContainer>
-        <VideoContainer>
+        <VideoContainer onClick={closeChatBox}>
           <VideoBox className={`width-peer${peers.length > 8 ? '' : peers.length}`} id={`localVideo_${socket.id}`}>
             {!userVideoAudio['localUser'].video && <UserName>{currentUser}</UserName>}
-            <FaIcon className='fas fa-expand' />
             {writeUserName(currentUser, userVideoAudio['localUser'].video)}
             {writeUserAudioStatus(userVideoAudio['localUser'].audio)}
             <MyVideo onClick={expandScreen} ref={userVideoRef} muted autoPlay playInline />

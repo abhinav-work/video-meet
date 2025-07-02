@@ -5,7 +5,7 @@ export const Bar = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: ${({ $chatOpen }) => ($chatOpen ? 'calc(100% - 32px)' : '99%')}; // Chat window assumed to be 350px
+  width: ${({ $chatOpen }) => ($chatOpen ? 'calc(100% - 32px)' : '99%')};
   right: ${({ $chatOpen }) => ($chatOpen ? '150px' : '0')};
   height: 8%;
   background-color: #4ea1d3;
@@ -19,6 +19,9 @@ export const Bar = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     right: 0;
+    height: auto;
+    flex-direction: column;
+    padding: 8px 4px;
   }
 `;
 
@@ -42,13 +45,16 @@ export const ActionButton = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 60px;
-  padding: 6px;
-  border-radius: 12px;
+
+  /* Responsive sizing using clamp: min, preferred, max */
+  width: clamp(28px, 10vw, 60px);
+  height: clamp(30px, 8vw, 50px);
+  padding: clamp(4px, 1vw, 10px);
+  border-radius: clamp(8px, 2vw, 16px);
+
   background-color: #ffffff22;
   color: white;
-  font-size: 13px;
+  font-size: clamp(11px, 2.5vw, 15px);
   font-weight: 500;
   text-align: center;
   cursor: pointer;
@@ -59,8 +65,8 @@ export const ActionButton = styled.div`
   }
 
   i {
-    font-size: 20px;
-    margin-bottom: 4px;
+    font-size: clamp(18px, 4vw, 28px);
+    margin-bottom: clamp(2px, 0.7vw, 6px);
   }
 
   .fa-microphone-slash,
@@ -72,7 +78,26 @@ export const ActionButton = styled.div`
   * {
     pointer-events: none;
   }
+
+  /* Extra tweaks for very small screens */
+  @media (max-width: 480px) {
+    width: 44vw;
+    min-width: 44px;
+    height: 12vw;
+    min-height: 36px;
+    border-radius: 10vw;
+    font-size: 12px;
+    i {
+      font-size: 22px;
+    }
+  }
+  @media (max-width: 768px) {
+    flex: 1 1 45%;
+    max-width: 48%;
+    margin: 0 1% 8px 1%;
+  }
 `;
+
 
 export const StopButton = styled(ActionButton)`
   background-color: #ee2560;
@@ -85,21 +110,37 @@ export const StopButton = styled(ActionButton)`
 export const Left = styled.div`
   display: flex;
   gap: 12px;
-  align-items: center;
-  position: absolute;
-  left: 16px;
-`;
 
-export const Right = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 16px;
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
 `;
 
 export const Center = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 12px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+`;
+
+export const Right = styled.div`
+  display: flex;
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
