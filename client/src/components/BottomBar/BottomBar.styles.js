@@ -20,8 +20,12 @@ export const Bar = styled.div`
     width: 100%;
     right: 0;
     height: auto;
+    max-height: 30vh;
     flex-direction: column;
     padding: 8px 4px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 `;
 
